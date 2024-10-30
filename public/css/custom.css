@@ -1,0 +1,246 @@
+.custom-bg-7691AA {
+  background-color:  #7691AA;
+
+}
+
+.custom-bg-357D7F {
+    background-color: #357D7F;
+  }
+  .custom-text-white {
+    color: white;
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.custom-gradient {
+  background: linear-gradient(to right, #357D7F, #1A4A4C); /* Modify second color as needed */
+}
+
+/* clinic detals */
+#clinic-details {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+/* toast costum*/
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+  }
+}
+
+.spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 8px solid #3498db; /* Customize color */
+  width: 50px;
+  height: 50px;
+  animation: spin 1.5s linear infinite;
+}
+
+/* Keyframes for spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading screen background and content styles */
+#loadingScreen {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white background */
+  backdrop-filter: blur(10px); /* Optional: add blur effect */
+}
+
+#loadingMessage {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+#loadingScreen img {
+  margin-top: 1rem; /* Add space above the image */
+}
+table.dataTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+table.dataTable thead th {
+  border: 1px solid #e5e7eb; /* Tailwind's border-gray-200 */
+}
+table.dataTable tbody td {
+  border: 1px solid #e5e7eb; /* Tailwind's border-gray-200 */
+}
+
+.dataTables_paginate .paginate_button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 0 2px;
+  background-color: #02509e;
+  color: #333;
+
+}
+
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+.bar {
+background-color: #3498db;
+  margin-right: 5px;
+  text-align: center;
+  color: #fff;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.dataTables_filter {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px; /* Adjust as needed */
+  transform: translateY(-50%);
+  color: #888; /* Adjust color as needed */
+}
+
+.dataTables_filter input {
+  padding-left: 30px; /* Adjust to make room for the icon */
+}
+
+
+.dataTables_paginate {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+
+
+/* Styling individual pagination buttons */
+.dataTables_paginate .paginate_button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Add custom styling to active or disabled states if needed */
+.dataTables_paginate .paginate_button.current {
+  background-color: #007bff;
+  color: white;
+}
+
+.dataTables_paginate .paginate_button.disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.slide-up {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 1.5s ease-out, opacity 1.5s ease-out; /* Increased duration to 1.5s */
+}
+
+.slide-up.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+.slide-left {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 1.5s ease-out, opacity 1.5s ease-out; /* Increased duration to 1.5s */
+}
+
+.slide-left.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%); /* Start off-screen to the left */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.in-view {
+  background-color: #357D7F;
+  transition: background-color 0.5s ease;
+}
+ 
+
+.fc-button {
+    background-color: #f3f4f6; /* Tailwind gray-200 */
+    color: #111827; /* Tailwind gray-800 */
+    border-radius: 0.375rem; /* Tailwind rounded-md */
+    border: none;
+}
+.fc-button:hover {
+    background-color: #e5e7eb; /* Tailwind gray-300 */
+}
+.fc-event.fully-booked {
+    background-color: blue; /* Blue for fully booked */
+    border-color: blue; /* Border color */
+}
+.fc-event.closed {
+    background-color: red; /* Red for closed */
+    border-color: red; /* Border color */
+}
