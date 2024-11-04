@@ -8,27 +8,28 @@ class CreateHistoriesTable extends Migration
 {
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('pet_id'); 
-            $table->string('patient_name');
-            $table->text('dietary_needs')->nullable();
-            $table->text('morning_meals')->nullable();
-            $table->text('evening_meals')->nullable();
-            $table->text('treats')->nullable();
-            $table->text('water')->nullable();
-            $table->timestamps();
+        // Check if the table already exists before creating it
+        if (!Schema::hasTable('histories')) {
+            Schema::create('histories', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('pet_id'); 
+                $table->string('patient_name');
+                $table->text('dietary_needs')->nullable();
+                $table->text('morning_meals')->nullable();
+                $table->text('evening_meals')->nullable();
+                $table->text('treats')->nullable();
+                $table->text('water')->nullable();
+                $table->timestamps();
 
-            // Foreign key constraint
-            $table->foreign('pet_id')->references('id')->on('my_pets')->onDelete('cascade');
-        
-        });
+                // Foreign key constraint
+                $table->foreign('pet_id')->references('id')->on('my_pets')->onDelete('cascade');
+            });
+        }
     }
 
     public function down()
     {
-        Schema::table('histories', function (Blueprint $table) {
-            $table->dropColumn(['patient_name', 'dietary_needs', 'morning_meals', 'evening_meals', 'treats', 'water']);
-        });
+        // Drop the entire table if it exists
+        Schema::dropIfExists('histories');
     }
 }

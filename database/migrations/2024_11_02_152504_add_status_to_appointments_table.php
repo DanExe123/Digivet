@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            $table->string('status')->default('active'); // Add the status column with a default value
-        });
+        // Check if the 'status' column does not exist before adding it
+        if (!Schema::hasColumn('appointments', 'status')) {
+            Schema::table('appointments', function (Blueprint $table) {
+                $table->string('status')->default('active')->after('appointment_number'); // Adjust the position as necessary
+            });
+        }
     }
 
     /**

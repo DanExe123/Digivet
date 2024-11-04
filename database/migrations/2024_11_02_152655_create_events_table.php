@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+
+                    // Check if the appointments table does not exist before creating it
+        if (!Schema::hasTable('events')) {
+            Schema::create('events', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->unsignedBigInteger('user_id'); // Foreign key for user
-          
             $table->string('title'); // Event title
             $table->dateTime('start'); // Start date and time
             $table->dateTime('end'); // End date and time
@@ -23,8 +25,11 @@ return new class extends Migration
 
             // Foreign key constraints
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // User foreign key
-          
-        });
+            });
+        }
+     
+
+
     }
 
     /**
