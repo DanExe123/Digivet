@@ -18,9 +18,21 @@ class Appointment extends Model
 
 
     protected $fillable = [
-        'user_id','pet_name', 'clinicname', 
-        'services','gender', 'breed', 'birthdate', 'appointment_date','appointment_number',
-        'service_type', 'agreed_cancellation', 'agreed_payment', 'agreed_liability','cancellation_reason',
+        'user_id',
+        'clinic_owner_id',
+        'pet_name',
+        'clinicname', 
+        'services',
+        'gender',
+        'breed',
+        'birthdate',
+        'appointment_date',
+        'appointment_number',
+        'service_type',
+        'agreed_cancellation',
+        'agreed_payment',
+        'agreed_liability',
+        'cancellation_reason',
         
     ];
 
@@ -30,15 +42,16 @@ class Appointment extends Model
         return $this->belongsTo(User::class, 'user_id'); // Assumes 'user_id' is the foreign key in appointments table
     }
 
-    public function clinic()
-{
-    return $this->belongsTo(Clinic::class, 'clinicname', 'id'); // Adjust fields if necessary
-}
+    
 
         public function event()
         {
             return $this->belongsTo(Event::class);
         }
     
+        public function clinic()
+        {
+            return $this->belongsTo(Clinic::class);
+        }
 }
 

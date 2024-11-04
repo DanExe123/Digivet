@@ -5,6 +5,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\Appointment; 
+
 use Illuminate\Support\Facades\Log; // Import the Log facade
 use Spatie\Permission\Models\Permission;
 
@@ -13,18 +14,33 @@ class AdminAppointmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() 
-    {
+    public function index(Request $request)
+{
+    // Retrieve clinic_id from the request
+    $clinic_id = $request->input('clinic_id'); // Make sure 'clinic_id' matches the name of the input field
 
-        $appointments = Appointment::all(); // Fetch all appointments
-        $appointmentCount = $appointments->count(); // Get the count of appointments
+    // Fetch appointments, filtering by clinic_id if provided
+    $appointments = Appointment::with('user')
+        ->when($clinic_id, function ($query) use ($clinic_id) {
+            return $query->where('clinic_id', $clinic_id);
+        })
+        ->get();
 
-        $appointments = Appointment::with('user')->get();
+    // Log each appointment's details
+    foreach ($appointments as $appointment) {
+        \Log::info('Appointment Details:', $appointment->toArray());
+    }
 
-                    // Return the view with appointments and new appointments passed to the view
-                    return view('admin.AdminAppointment', compact('appointments', 'appointmentCount'));
-                    }
+    // Get the count of appointments
+    $appointmentCount = $appointments->count();
 
+
+
+    // Return view with data
+    return view('admin.AdminAppointment', compact('appointments', 'appointmentCount', 'clinic_id'));
+}
+
+    
     public function markAsDone(Request $request, $id)
     {
         // Validate the request

@@ -32,7 +32,11 @@ class MonthlyDewormingController extends Controller
                 $query->whereDate('appointment_date', '<=', now()); // Past and current appointments
             })
             ->get();
-    
+
+
+           
+
+
         // Count the total number of consultation appointments
         $totalDeworming = $DewormingnAppointments->count();
     

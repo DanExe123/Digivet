@@ -24,5 +24,14 @@ class SuperadminManageAccount extends Model
 {
     return $this->belongsTo(User::class);
 }
+public function appointment()
+{
+    return $this->belongsTo(appointment::class);
+}
+ // Add relationship to Clinic
+ public function clinic()
+ {
+     return $this->belongsTo(Clinic::class, 'clinicname'); // Assuming 'clinicname' is the foreign key
+ }
 
 }

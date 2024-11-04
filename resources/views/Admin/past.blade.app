@@ -87,10 +87,9 @@
 
 
 
+            
             <tbody class="bg-white divide-y divide-gray-200">
-                
                 @foreach($appointments as $appointment)
-                
                 <tr>
                     <td class="px-2 py-1 text-sm">{{ $appointment->user->name }}</td>
                     <td class="px-2 py-1 text-sm">{{ $appointment->pet_name }}</td>
@@ -102,7 +101,7 @@
                     <td class="px-2 py-1 text-sm">{{ $appointment->appointment_number }}</td>
                     <td class="px-2 py-1 text-sm">
                         @php
-                            $status = strtolower(trim($appointment->status ?? 'pending'));
+                            $status = strtolower(trim($appointment->status ?? 'pending')); // Normalize status
                         @endphp
                         
                         <span class="status-indicator 
@@ -111,26 +110,30 @@
                                 ($status === 'cancelled' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') 
                             }} 
                             text-white py-1 px-2 rounded text-center flex justify-center">
-                            {{ $status === 'active' ? 'Queue' : ucfirst($status) }}
+                            {{ $status === 'active' ? 'Queue' : ucfirst($status) }} <!-- Display Queue for active status -->
                         </span>
                     </td>
                     
+                    
                     <td class="px-2 py-1 text-center text-xs">
                         <div class="flex justify-center space-x-1">
+                           
                             <button class="bg-cyan-950 text-xs btn btn-red text-red-500 hover:text-red-700 px-2 py-1" onclick="deleteRecord({{ $appointment->id }})">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                             
+                        
                             <button class="bg-cyan-950 text-xs btn btn-green text-green-500 hover:text-green-700 px-2 py-1" 
                             onclick="markAsDone({{ $appointment->id }}, '{{ $appointment->status }}')">
-                                <i class="fas fa-check"></i>
-                            </button>
+                        <i class="fas fa-check"></i>
+                    </button>
+                        </div>
+                        
                         </div>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
-            
         </table>
     </div>
 </div>

@@ -272,38 +272,46 @@
 
     <!-- Initialize DataTables -->
     <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                "paging": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "dom": '<"top"lf>rt<"bottom"ip><"clear">',
-                "language": {
-                    "search": "_INPUT_",
-                    "searchPlaceholder": "Search..."
-                },
-                "pagingType": "simple_numbers",
-                "autoWidth": false // Disables automatic width calculation
-            });
-    
-            // Custom CSS to align the search bar to the left
-            $('.dataTables_filter').css('float', 'left');
-            $('.dataTables_length').css('float', 'right');
-    
-            // Apply border-radius to the search input
-            $('.dataTables_filter input').css({
-                'border-radius': '15px',
-                'padding': '4px 8px', // Reduced padding for compact look
-                'margin-bottom': '5px'
-            });
-    
-            // Add an icon inside the search input
-            $('.dataTables_filter').append('<i class="fas fa-search search-icon"></i>');
-            $('.dataTables_filter input').css({
-                'padding-left': '24px' // Adjust as needed for the icon
-            });
-        });
+         $(document).ready(function() {
+                                    $('#example').DataTable({
+                                        "paging": true,
+                                        "searching": true,
+                                        "ordering": true,
+                                        "info": true,
+                                        "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+                                        "language": {
+                                            "search": "_INPUT_",
+                                            "searchPlaceholder": "Search..."
+                                        },
+                                        "pagingType": "simple_numbers",
+                                        "autoWidth": false // Disables automatic width calculation
+                                    });
+
+                                    // Custom CSS to align the search bar to the left
+                                    $('.dataTables_filter').css('float', 'left');
+                                    $('.dataTables_length').css('float', 'right');
+
+                                    // Apply border-radius to the search input
+                                    $('.dataTables_filter input').css({
+                                        'border-radius': '15px',
+                                        'padding': '4px 8px', // Reduced padding for compact look
+                                        'margin-bottom': '5px'
+                                    });
+
+                                    // Add an icon inside the search input
+                                    $('.dataTables_filter').append('<i class="fas fa-search search-icon"></i>');
+                                    $('.dataTables_filter input').css({
+                                        'padding-left': '24px' // Adjust as needed for the icon
+                                    });
+
+                                    // CSS to remove the arrow down in the DataTable length select
+                                    $('.dataTables_length select').css({
+                                        'appearance': 'none', // Remove default appearance
+                                        '-webkit-appearance': 'none', // Remove default appearance for Safari
+                                        '-moz-appearance': 'none', // Remove default appearance for Firefox
+                                        'background-image': 'none' // Remove any background image
+                                    });
+                                });
     </script>
     
     @endsection

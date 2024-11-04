@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\User;
 use App\Models\Appointment;
+
 class AppointmentRequest extends FormRequest
 {
     /**
@@ -25,8 +26,8 @@ class AppointmentRequest extends FormRequest
         return [
             'pet_name' => 'required|string|max:255',
             'clinicname' => 'required|string',
+            
             'services' => 'required|array|min:1',
-
             'gender' => 'required|string',
             'breed' => 'required|string',
             'birthdate' => 'required|date',
@@ -35,7 +36,6 @@ class AppointmentRequest extends FormRequest
             'agreed_cancellation' => 'required|boolean',
             'agreed_payment' => 'required|boolean',
             'agreed_liability' => 'required|boolean',
-            
         ];
     }
   
@@ -46,13 +46,14 @@ class AppointmentRequest extends FormRequest
     {
         return [
             'pet_name.required' => 'The pet name is required.',
+            'clinicname.required' => 'The clinic name is required.',
+            'clinic_owner_id.required' => 'The clinic owner ID is required.', // Add this custom error message
+            'services.required' => 'At least one service must be selected.',
             'gender.required' => 'The gender is required.',
             'breed.required' => 'The breed is required.',
             'birthdate.required' => 'The birthdate is required.',
             'appointment_date.required' => 'The appointment date is required.',
             'service_type.required' => 'The service type is required.',
-            'clinicname.required' => 'The clinic name is required.',
-            'services.required' => 'At least one service must be selected.',
             'agreed_cancellation.required' => 'You must agree to the cancellation policy.',
             'agreed_payment.required' => 'You must agree to the payment policy.',
             'agreed_liability.required' => 'You must agree to the liability policy.',

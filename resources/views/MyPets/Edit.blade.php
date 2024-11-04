@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+
+    
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-md">
@@ -94,10 +96,11 @@
                             </div>
         
 
-                            <div class="mt-6">
-                                <a href="{{ route('MyPets.create') }}" class="custom-bg-357D7F hover:bg-gray-700 text-white py-2 px-4 rounded">Back to List</a>
-                                <button type="submit" class="custom-bg-357D7F hover:bg-gray-700 text-white py-2 px-4 rounded">Update</button>
+                            <div class="mt-6 flex space-x-4">
+                                <a href="{{ route('MyPets.create') }}" class="custom-bg-357D7F hover:bg-gray-700 text-white py-2 px-4 rounded w-32 text-center">Back to List</a>
+                                <button type="submit" class="bg-blue-600 hover:bg-gray-700 text-white py-2 px-4 rounded w-32 text-center">Update</button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -105,4 +108,7 @@
         </div>
     </div>
 </div>
+
+
+              
 </x-app-layout>

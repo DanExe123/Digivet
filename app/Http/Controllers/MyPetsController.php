@@ -63,7 +63,7 @@ class MyPetsController extends Controller
         // Create the new pet record
         MyPets::create($validated);
 
-        session()->flash('message_type', 'Pet information saved successfully!');
+   
 
         return redirect()->route('MyPets.index')->with('success', 'Pet created successfully.');
     }
@@ -116,9 +116,9 @@ class MyPetsController extends Controller
         // Update the MyPets instance with validated data
         $MyPets->update($validatedData);
 
-        session()->flash('message', 'Pet information updated successfully!');
+       
 
-        return redirect()->route('MyPets.index')->with('success', 'Pet updated successfully.');
+        return redirect()->route('MyPets.index')->with('success', 'Pet information updated successfully!');
     }
 
     /**
@@ -130,9 +130,7 @@ class MyPetsController extends Controller
         $MyPets = MyPets::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
         $MyPets->delete();
 
-        session()->flash('message', 'Pet deleted successfully!');
-        session()->flash('message_type', 'error');
-        
-        return redirect()->route('MyPets.index');
+      
+        return redirect()->route('MyPets.index')->with('success', 'Pet deleted successfully!');
     }
 }

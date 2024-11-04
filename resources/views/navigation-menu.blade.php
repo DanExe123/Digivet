@@ -252,10 +252,10 @@
             <x-responsive-nav-link href="{{ route('MyPets.index') }}" :active="request()->routeIs('MyPets.index')">
                 {{ __('Pet Account') }}
             </x-responsive-nav-link>
-            <x-nav-link href="#" data-modal-toggle="my_modal_5" class="custom-bg-357D7F text-cyan-50 ">
-                {{ __('Pay Now') }}
-            </x-nav-link>
             
+            <x-responsive-nav-link href="{{ route('HowToPay.index') }}" :active="request()->routeIs('HowToPay.index')">
+                {{ __('Pet Account') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

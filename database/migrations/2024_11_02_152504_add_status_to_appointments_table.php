@@ -9,18 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    
     public function up()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            $table->string('status')->default('active'); // Add a default value if necessary
+            $table->string('status')->default('active'); // Add the status column with a default value
         });
     }
-    
+
+    /**
+     * Reverse the migrations.
+     */
     public function down()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            $table->dropColumn('status');
+            $table->dropColumn('status'); // Drop the status column if rolling back
         });
     }
-} ;   
+};

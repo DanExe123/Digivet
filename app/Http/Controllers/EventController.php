@@ -96,7 +96,12 @@ class EventController extends Controller
     
         return response()->json($events);
     }
-   
+
+
+
+
+}
+    
  
     
-}
+

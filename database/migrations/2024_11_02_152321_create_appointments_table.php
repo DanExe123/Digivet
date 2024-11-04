@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Foreign key to users table
+            $table->foreignId('clinic_owner_id')->constrained('clinics')->onDelete('cascade'); // Foreign key to clinics table
             $table->string('pet_name');
             $table->string('clinicname');
             $table->string('services');
@@ -25,13 +26,11 @@ return new class extends Migration
             $table->boolean('agreed_cancellation')->default(false);
             $table->boolean('agreed_payment')->default(false);
             $table->boolean('agreed_liability')->default(false);
+            $table->integer('appointment_number')->unique()->nullable(); // Unique and nullable appointment number
 
-         
             $table->timestamps();
-            
         });
     }
-    
 
     /**
      * Reverse the migrations.

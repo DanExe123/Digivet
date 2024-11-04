@@ -67,10 +67,10 @@ class AppointmentController extends Controller
     Appointment::create([
 
         'user_id' => auth()->id(), 
+        'clinic_owner_id' => $clinics->id,
         'pet_name' => $validated['pet_name'],
         'clinicname' => $validated['clinicname'],
         'services' => !empty($filteredServices) ? implode(',', $filteredServices) : null, // Store services as a comma-separated string
-  
             'gender' => $validated['gender'],
             'breed' => $validated['breed'],
             'birthdate' => $validated['birthdate'],
@@ -109,16 +109,26 @@ class AppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function getEvents(Request $request)
-    {
-        // Ensure the user is logged in
-        if (!Auth::check()) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-    
-        // Fetch events for the logged-in user
-        $events = Event::where('user_id', Auth::id())->get();
-    
-        return response()->json($events);
-    }
+   
+     public function getCalendarEvents(Request $request)
+     {
+         // Validate the input
+         $clinicName = $request->input('clinicname');
+         if (!$clinicName) {
+             return response()->json(['error' => 'Clinic name is required.'], 400);
+         }
+     
+         try {
+             $events = Event::where('clinicname', $clinicName)->get();
+     
+             if ($events->isEmpty()) {
+                 return response()->json(['message' => 'No events found for this clinic.'], 404);
+             }
+     
+             return response()->json($events);
+         } catch (\Exception $e) {
+             \Log::error('Error fetching events: ' . $e->getMessage());
+             return response()->json(['error' => 'An error occurred while fetching events.'], 500);
+         }
+     }
 }

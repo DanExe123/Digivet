@@ -3,6 +3,8 @@
         
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Appointment Scheduling') }}
+            <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+            <script src="https://unpkg.com/aos@next/dist/aos.js"></script> 
         </h2>
     </x-slot>
     
@@ -13,14 +15,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <h1 class="text-center font-extrabold mb-6">Choose Services you want to book</h1>
-                     <!-- Slide Animation -->
-                     <div id="content" class="slide-up">
+                   
+                    
                     <!-- Grid Layout for Cards --> 
                     <form action="{{ route('appointments.store') }}" method="POST" id="appointment-form">
                         @csrf
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="zoom-in" data-aos-duration="2000"> 
                         <!-- Vaccination Card -->
-                    <div class="card bg-base-100 shadow-xl border border-black relative">
+                    <div class="card bg-base-100 shadow-xl border border-black relative" >
                         <figure class="px-10 pt-10">
                             <img src="https://autumntrailsvet.com/wp-content/uploads/2021/03/injection-for-dog.jpg" alt="Vaccination" class="rounded-xl" />
                         </figure>
@@ -78,206 +80,213 @@
                             </div>
                         </div>
                     </div>
-                     
-                        </div>
+                 </div>
+              </div>
+             </div>
+      
 
 
 
-                   
-                    
-                     <!-- Calendar Section -->
-                     <h2 class="text-left font-extrabold mt-12 mb-6 ">Select a Date for Your Appointment</h2>
-                     <div class="flex justify-start">
-                        <div id="calendar" class="bg-white p-4 rounded-lg shadow-lg mb-5 w-full h-96 md:h-128 lg:h-144 xl:h-160"></div>
-                  
+            <!-- Calendar Section -->
+<h2 class="text-left font-extrabold mt-12 mb-6">Select a Date for Your Appointment</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Calendar Container -->
+    <div class="flex flex-col justify-start" data-aos="fade-right" data-aos-duration="2000">
+        <div id="calendar" class="bg-white p-4 rounded-lg shadow-lg mb-5 w-full h-96 md:h-128 lg:h-144 xl:h-160"></div>
 
-                    
-                    
-                        <div class="w-full max-w-xs ml-5">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Select Clinic</label>
-                            <select id="clinic-select" name="clinicname" class="mt-2 block w-full p-2 border rounded" required>
-                                <option value="" disabled selected>Select a clinic</option>
-                                @foreach($clinics as $clinic)
-                                    <option value="{{ $clinic->clinicname}}" 
-                                        data-details='{{ json_encode([
-                                            "name" => $clinic->name, 
-                                            "email" => $clinic->email, 
-                                            "address" => $clinic->address, 
-                                            "Contact" => $clinic->Contact, 
-                                            "clinic_description" => $clinic->clinic_description, 
-                                            "pricing_deworming" => $clinic->pricing_deworming, 
-                                            "pricing_vaccinated" => $clinic->pricing_vaccinated, 
-                                            "pricing_consultation" => $clinic->pricing_consultation, 
-                                            "pricing_petgrooming" => $clinic->pricing_petgrooming
-                                        ]) }}'>
-                                        {{ $clinic->clinicname }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-<!--
-
-                        />
--->
-
-    
-
-<!-- Modal structure -->
-        <dialog id="my_modal_4" class="modal">
-    <div class="modal-box w-11/12 max-w-5xl">
-        <h3 class="text-lg font-bold">Clinic Details</h3>
-
-        <div class="flex justify-between mb-4">
-            <!-- Left Side: Clinic Details -->
-            <div class="max-w-sm rounded-lg overflow-hidden shadow-lg w-1/2 border-l-4 border-[#357D7F]">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2" id="clinic-name"></div>
-                    <p class="text-gray-700 text-base">
-                        <strong>Email:</strong> <span id="clinic-email"></span><br>
-                        <strong>Address:</strong> <span id="clinic-address"></span><br>
-                        <strong>Contact:</strong> <span id="clinic-contact"></span>
-                    </p>
-                </div>
-            </div>
-        
-            <!-- Right Side: Clinic Image -->
-            <div class="w-1/2 flex justify-center items-center">
-                <img id="clinic-image" src="https://img.freepik.com/premium-vector/doctor-with-cats-doctor-room-with-cat-dog_1120557-15207.jpg?w=826" alt="Clinic Image" class="rounded shadow-lg w-full max-w-sm object-cover" />
+        <!-- Closed and Fully Booked Indicators -->
+        <div class="flex items-center">
+            <div class="w-4 h-4 bg-red-500 mr-3"></div>
+            <div class="font-extrabold">
+                <p>Veterinary clinic is closed.</p>
             </div>
         </div>
-        
-        
- <!-- Clinic Description -->
-<div class="flex justify-center mb-4">
-    <div class="max-w-3xl rounded-lg overflow-hidden shadow-lg custom-gradient p-6 text-white">
-        <h4 class="text-2xl font-bold mb-4 text-center underline">Clinic Description</h4>
-        <p id="clinic-description" class="text-gray-200 text-base leading-relaxed">
-            <!-- Clinic description will be dynamically inserted here -->
-        </p>
+
+        <div class="flex items-center">
+            <div class="w-4 h-4 bg-blue-500 mr-3"></div>
+            <div class="font-extrabold">
+                <p>Fully booked on that day.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clinic Selection and Notes Section -->
+    <div class="max-w-xs mx-auto md:max-w-md bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4" data-aos="fade-left" data-aos-duration="2000">
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2 mt-2">Select Clinic</label>
+            <select id="clinic-select" name="clinicname" class="mt-2 block w-full p-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" required>
+                <option value="" disabled selected>Select a clinic</option>
+                @foreach($clinics as $clinic)
+                <option value="{{ $clinic->id }}|{{ $clinic->clinicname }}"
+                    data-details='{{ json_encode([
+                     
+                        "name" => $clinic->name,
+                        "email" => $clinic->email,
+                        "address" => $clinic->address,
+                        "Contact" => $clinic->Contact,
+                        "clinic_description" => $clinic->clinic_description,
+                        "pricing_deworming" => $clinic->pricing_deworming,
+                        "pricing_vaccinated" => $clinic->pricing_vaccinated,
+                        "pricing_consultation" => $clinic->pricing_consultation,
+                        "pricing_petgrooming" => $clinic->pricing_petgrooming,
+                        "clinic_owner_id" => $clinic->id
+                    ]) }}'>
+                    {{ $clinic->clinicname }}
+                </option>
+                @endforeach
+            </select>
+            
+        </div>
+
+        <!-- Informative Notes for Clinics and Appointments -->
+        <div class="p-4 border-t border-gray-300">
+            <h3 class="text-lg font-bold mb-2">Important Notes for Your Appointment</h3>
+            <ul class="list-disc list-inside text-gray-700">
+                <li>Please arrive 10-15 minutes early for your appointment to allow time for check-in.</li>
+                <li>Bring any medical records, vaccination history, or previous prescriptions for your pet.</li>
+                <li>If your pet has any specific dietary or medication needs, please mention them during your visit.</li>
+                <li>Be prepared to discuss your pet's symptoms and any behavioral changes observed.</li>
+                <li>Contact the clinic in advance if you need to reschedule or have any questions regarding your appointment.</li>
+            </ul>
+        </div>
+
+        <!-- Modal structure -->
+        <dialog id="my_modal_4" class="modal">
+            <div class="modal-box w-11/12 max-w-5xl">
+                <h3 class="text-lg font-bold">Clinic Details</h3>
+                <div class="flex justify-between mb-4">
+                    <!-- Left Side: Clinic Details -->
+                    <div class="max-w-sm rounded-lg overflow-hidden shadow-lg w-1/2 border-l-4 border-[#357D7F]">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2" id="clinic-name"></div>
+                            <p class="text-gray-700 text-base">
+                                <strong>Email:</strong> <span id="clinic-email"></span><br>
+                                <strong>Address:</strong> <span id="clinic-address"></span><br>
+                                <strong>Contact:</strong> <span id="clinic-contact"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Clinic Image -->
+                    <div class="w-1/2 flex justify-center items-center">
+                        <img id="clinic-image" src="https://img.freepik.com/premium-vector/doctor-with-cats-doctor-room-with-cat-dog_1120557-15207.jpg?w=826" alt="Clinic Image" class="rounded shadow-lg w-full max-w-sm object-cover" />
+                    </div>
+                </div>
+
+                <!-- Clinic Description -->
+                <div class="flex justify-center mb-4">
+                    <div class="max-w-3xl rounded-lg overflow-hidden shadow-lg custom-gradient p-6 text-white">
+                        <h4 class="text-2xl font-bold mb-4 text-center underline">Clinic Description</h4>
+                        <p id="clinic-description" class="text-gray-200 text-base leading-relaxed">
+                            <!-- Clinic description will be dynamically inserted here -->
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pricing Cards (4 Columns) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 relative z-10">
+                    <!-- Pricing Card 1: Deworming -->
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
+                        <div class="font-bold text-xl mb-2">Deworming</div>
+                        <p class="text-gray-700 text-base">
+                            Price: <span id="clinic-pricing_deworming"></span>
+                        </p>
+                    </div>
+
+                    <!-- Pricing Card 2: Vaccination -->
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
+                        <div class="font-bold text-xl mb-2">Vaccination</div>
+                        <p class="text-gray-700 text-base">
+                            Price: <span id="clinic-pricing_vaccinated"></span>
+                        </p>
+                    </div>
+
+                    <!-- Pricing Card 3: Consultation -->
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
+                        <div class="font-bold text-xl mb-2">Consultation</div>
+                        <p class="text-gray-700 text-base">
+                            Price: <span id="clinic-pricing_consultation"></span>
+                        </p>
+                    </div>
+
+                    <!-- Pricing Card 4: Pet Grooming -->
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
+                        <div class="font-bold text-xl mb-2">Pet Grooming</div>
+                        <p class="text-gray-700 text-base">
+                            Price: <span id="clinic-pricing_petgrooming"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal-action">
+                    <button type="button" class="btn custom-bg-357D7F" id="save-button">Save</button>
+                    <button class="btn custom-bg-357D7F" id="close-modal">Cancel</button>
+                </div>
+            </div>
+        </dialog>
+
+        <button type="button" class="btn custom-bg-357D7F" onclick="my_modal_5.showModal()">Fillup Form</button>
     </div>
 </div>
 
-        
-        <!-- Pricing Cards (4 Columns) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 relative z-10">
-            <!-- Pricing Card 1: Deworming -->
-            <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
-                <div class="font-bold text-xl mb-2">Deworming</div>
-                <p class="text-gray-700 text-base">
-                    Price: <span id="clinic-pricing_deworming"></span>
-                </p>
-            </div>
-        
-            <!-- Pricing Card 2: Vaccination -->
-            <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
-                <div class="font-bold text-xl mb-2">Vaccination</div>
-                <p class="text-gray-700 text-base">
-                    Price: <span id="clinic-pricing_vaccinated"></span>
-                </p>
-            </div>
-        
-            <!-- Pricing Card 3: Consultation -->
-            <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
-                <div class="font-bold text-xl mb-2">Consultation</div>
-                <p class="text-gray-700 text-base">
-                    Price: <span id="clinic-pricing_consultation"></span>
-                </p>
-            </div>
-        
-            <!-- Pricing Card 4: Pet Grooming -->
-            <div class="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white border-l-4 border-[#357D7F] transition-transform duration-300 hover:scale-105">
-                <div class="font-bold text-xl mb-2">Pet Grooming</div>
-                <p class="text-gray-700 text-base">
-                    Price: <span id="clinic-pricing_petgrooming"></span>
-                </p>
-            </div>
-        </div>
-        
-        <div class="modal-action">
-            <button type="button" class="btn custom-bg-357D7F" id="save-button">Save</button>
-            <button class="btn custom-bg-357D7F" id="close-modal">Cancel</button>
-        </div>
-    </div>
-</dialog>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let selectedClinic = null; // To keep track of the selected clinic
 
-       
-
-        // Show modal with clinic details when the clinic is selected
-        document.getElementById('clinic-select').addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const clinicDetails = selectedOption.getAttribute('data-details');
-
-            if (clinicDetails) {
-                selectedClinic = JSON.parse(clinicDetails); // Save selected clinic details
-                
-                // Update with the selected clinic's data
-                document.getElementById('clinic-name').textContent = selectedClinic.name;
-                document.getElementById('clinic-email').textContent = selectedClinic.email;
-                document.getElementById('clinic-address').textContent = selectedClinic.address;
-                document.getElementById('clinic-contact').textContent = selectedClinic.Contact;
-                document.getElementById('clinic-description').textContent = selectedClinic.clinic_description;
-                document.getElementById('clinic-pricing_deworming').textContent = selectedClinic.pricing_deworming;
-                document.getElementById('clinic-pricing_vaccinated').textContent = selectedClinic.pricing_vaccinated;
-                document.getElementById('clinic-pricing_consultation').textContent = selectedClinic.pricing_consultation;
-                document.getElementById('clinic-pricing_petgrooming').textContent = selectedClinic.pricing_petgrooming;
-
-                // Show the modal
-                document.getElementById('my_modal_4').showModal();
-
-                // Update calendar based on selected user
-                updateCalendar(selectedClinic.id); // Use the clinic ID or modify this if you have user ID to pass
-            } else {
-                alert('Please select a clinic.'); // Fallback if no details are found
-            }
-        });
-
-      
-
-        // Save button functionality
-        document.getElementById('save-button').addEventListener('click', function() {
-            if (selectedClinic) {
-                // Logic to save the selected clinic details
-                // You can implement your saving logic here, such as AJAX or setting a hidden input field
-                
-                // Close the modal after saving
-                document.getElementById('my_modal_4').close();
-                
-                // Display a success message (optional)
-                alert('Clinic selected: ' + selectedClinic.name);
-            } else {
-                alert('Please select a clinic before saving.'); // Handle case where no clinic is selected
-            }
-        });
-
-        // Close modal when the close button is clicked
-        document.getElementById('close-modal').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent form submission
-            document.getElementById('my_modal_4').close(); // Close the modal
-        });
-    });
-</script>
-
-                     </div>
-                     <!-- closed and fullybooked -->
-                    <div class="flex items-center mt-5">
-                        <div class="w-4 h-4 bg-red-500 mr-3"></div> 
-                        <div class="font-extrabold">
-                            <p>Veterinary clinic is closed.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-4 h-4 bg-blue-500 mr-3"></div> 
-                        <div class="font-extrabold">
-                            <p>Fully booked on that day.</p>
-                        </div>
-                     </div>
-                    
+                                    <script>
+                                       document.addEventListener('DOMContentLoaded', function() {
+                                            let selectedClinic = null; // To keep track of the selected clinic
+                        
+                                            // Show modal with clinic details when the clinic is selected
+                                            document.getElementById('clinic-select').addEventListener('change', function() {
+                                                const selectedOption = this.options[this.selectedIndex];
+                                                const clinicDetails = selectedOption.getAttribute('data-details');
+                        
+                                                if (clinicDetails) {
+                                                    selectedClinic = JSON.parse(clinicDetails); // Save selected clinic details
+                                                    
+                                                    // Update with the selected clinic's data
+                                                    document.getElementById('clinic-name').textContent = selectedClinic.name;
+                                                    document.getElementById('clinic-email').textContent = selectedClinic.email;
+                                                    document.getElementById('clinic-address').textContent = selectedClinic.address;
+                                                    document.getElementById('clinic-contact').textContent = selectedClinic.Contact;
+                                                    document.getElementById('clinic-description').textContent = selectedClinic.clinic_description;
+                                                    document.getElementById('clinic-pricing_deworming').textContent = selectedClinic.pricing_deworming;
+                                                    document.getElementById('clinic-pricing_vaccinated').textContent = selectedClinic.pricing_vaccinated;
+                                                    document.getElementById('clinic-pricing_consultation').textContent = selectedClinic.pricing_consultation;
+                                                    document.getElementById('clinic-pricing_petgrooming').textContent = selectedClinic.pricing_petgrooming;
+                        
+                                                    // Show the modal
+                                                    document.getElementById('my_modal_4').showModal();
+                                                } else {
+                                                    alert('Please select a clinic.'); // Fallback if no details are found
+                                                }
+                                            });
+                        
+                                            // Save button functionality
+                                            document.getElementById('save-button').addEventListener('click', function() {
+                                                if (selectedClinic) {
+                                                    // Logic to save the selected clinic details
+                                                    // You can implement your saving logic here, such as AJAX or setting a hidden input field
+                                                    
+                                                    // Close the modal after saving
+                                                    document.getElementById('my_modal_4').close();
+                                                    
+                                                    // Display a success message (optional)
+                                                    alert('Clinic selected: ' + selectedClinic.name);
+                                                } else {
+                                                    alert('Please select a clinic before saving.'); // Handle case where no clinic is selected
+                                                }
+                                            });
+                        
+                                            // Close modal when the close button is clicked
+                                            document.getElementById('close-modal').addEventListener('click', function(event) {
+                                                event.preventDefault(); // Prevent form submission
+                                                document.getElementById('my_modal_4').close(); // Close the modal
+                                            });
+                                        });
+                                    </script>
+                      
                        <!-- Open the modal using ID.showModal() method -->
                        <div class="flex justify-end">
-                        <button type="button" class="btn custom-bg-357D7F" onclick="my_modal_5.showModal()">Fillup Form</button>
+                       
                     
                         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
                             
@@ -405,7 +414,12 @@
 
     </div>
 </div>
+<x-footer logoPath="logo/Veterinary Clinic System_20240517_125656_0000.png.png" />
+
 @endrole
+<script>
+    AOS.init(); // Initialize AOS
+</script>
 <!-- Toastr CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
@@ -502,36 +516,59 @@
         }
     });
 
-    var calendar = $('#calendar').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        editable: false,  // Make the calendar non-editable for clients
-        events: SITEURL + "/fullcalender", // Fetch available slots
-        displayEventTime: true,
-        eventRender: function (event, element) {
-            // Apply classes based on event status
-            if (event.status === 'fully_booked') {
-                element.css('background-color', 'blue');  // Blue for fully booked
-                element.css('border-color', 'blue');      // Border color
-            } else if (event.status === 'closed') {
-                element.css('background-color', 'red');   // Red for closed
-                element.css('border-color', 'red');       // Border color
-            }
-        },
-        selectable: false, // Disable selection for clients
-        eventClick: function (event) {
-            // Show details about the event, if necessary
-            alert('Doctor: ' + event.title + 
-      '\nStatus: ' + event.status + 
-      '\nStart: ' + event.start.format('YYYY-MM-DD HH:mm') + 
-      '\nEnd: ' + (event.end ? event.end.format('YYYY-MM-DD HH:mm') : 'N/A'));
+    var SITEURL = '{{ url('/') }}'; // Define SITEURL
 
+// Define the updateCalendar function
+function updateCalendar(selectedClinic) {
+    $.ajax({
+        url: '{{ route('calendar.events') }}', // Ensure this URL is correct
+        method: 'GET',
+        data: { clinicname: selectedClinic },
+        success: function(data) {
+            $('#calendar').fullCalendar('removeEvents'); // Clear current events
+            $('#calendar').fullCalendar('addEventSource', data); // Add new events
+        },
+        error: function() {
+            alert('Error fetching calendar events. Please try again.');
         }
     });
+}
 
+// Attach event listener to the select dropdown
+$('#clinic-select').on('change', function() {
+    var selectedClinic = $(this).val();
+    if (selectedClinic) {
+        updateCalendar(selectedClinic); // Call the update function
+    }
+});
+
+// Initialize the calendar
+var calendar = $('#calendar').fullCalendar({
+    header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+    editable: false,
+    events: [], // Initially empty
+    displayEventTime: true,
+    eventRender: function(event, element) {
+        if (event.status === 'fully_booked') {
+            element.css('background-color', 'blue');
+            element.css('border-color', 'blue');
+        } else if (event.status === 'closed') {
+            element.css('background-color', 'red');
+            element.css('border-color', 'red');
+        }
+    },
+    selectable: false,
+    eventClick: function(event) {
+        alert('Doctor: ' + event.title + 
+              '\nStatus: ' + event.status + 
+              '\nStart: ' + event.start.format('YYYY-MM-DD HH:mm') + 
+              '\nEnd: ' + (event.end ? event.end.format('YYYY-MM-DD HH:mm') : 'N/A'));
+    }
+});
 
 
 

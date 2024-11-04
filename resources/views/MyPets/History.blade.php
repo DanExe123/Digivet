@@ -8,6 +8,20 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+                <p class="text-center text-lg font-extrabold text-cyan-900 dark:text-gray-300 mb-8 px-4 mt-4 ">
+                    Keep track of your pet's medical history to ensure they receive the best possible care.
+                    This section includes vital information about diagnoses, treatments, medications, and dietary needs.
+                </p>
+            </div></div></div>
+
+
+
+
+
+
+    <div class="py-5">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <h1 class="text-center font-extrabold mb-6">My Medical History</h1>
                     

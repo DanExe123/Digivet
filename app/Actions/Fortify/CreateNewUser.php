@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 use App\Models\SuperadminManageAccount;
 use App\Models\User;
+use App\Models\Clinic;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -77,7 +78,19 @@ class CreateNewUser implements CreatesNewUsers
             'clinic_documents' => json_encode($documentPaths),
            
         ]);
-    }
+    
+     // Add vet clinic data to the clinics table
+     Clinic::create([
+        'user_id' => $user->id,
+        'name' => $user->name,
+        'clinicname' => $user->clinicname,
+        'address' => $user->address,
+        'contact' => $user->contact,
+        'clinic_documents' => json_encode($documentPaths),
+        'status' => 'Pending',
+    ]);
+}
+
     
 
     return $user;

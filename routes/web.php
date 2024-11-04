@@ -158,7 +158,6 @@ Route::get('/Appointment/Success', [AppointmentController::class, 'success']);
 Route::post('/Appointment', [AppointmentController::class, 'store'])->name('appointments.store');
 Route::get('/Success', [SuccessController::class, 'index'])->name('Success.index');
 
-
 //listofappointemnts
 Route::get('/Listofappointment', [ListofappointmentController::class, 'index'])->name('Listofappointment.index');
 
@@ -204,7 +203,9 @@ Route::post('/check-date', [checkDateController::class, 'checkDate'])->name('che
 Route::patch('/appointments/{id}/mark-done', [AdminAppointmentController::class, 'markAsDone']);
 Route::delete('/appointments/{id}', [AdminAppointmentController::class, 'destroy'])->name('appointments.destroy');
 Route::get('/appointments/stats', [AdminAppointmentController::class, 'getPatientStats'])->name('dashboard.stats'); //recieved data 
-Route::get('/admin/appointments', [AdminAppointmentController::class, 'index']);
+Route::get('/admin/AdminAppointment', [AdminAppointmentController::class, 'index'])->name('admin.AdminAppointment.index');
+
+
 
 
 
@@ -234,6 +235,9 @@ Route::delete('/clients/{id}', [ClientAccountListController::class, 'destroy'])-
 Route::get('fullcalender', [EventController::class, 'index'])->name('admin.FullCalendar.index');
 //Route::get('fullcalender', [EventController::class, 'index'])->name('admin.FullCalender.index');
 Route::post('fullcalenderAjax', [EventController::class, 'ajax'])->name('admin.FullCalender.ajax');
+
+
+Route::get('/fullcalender', [AppointmentController::class, 'getCalendarEvents'])->name('calendar.events');
 
 
 //Route::get('/events', [EventController::class, 'index'])->name('admin.FullCalender.index');

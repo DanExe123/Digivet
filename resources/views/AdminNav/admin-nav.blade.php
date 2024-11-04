@@ -109,6 +109,7 @@
                                     <span class="text-gray-500 text-xs mt-1 text-center">Scheduled Date: <span class="font-bold text-red-600">{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('F j, Y') }}</span></span>
                                 </div>
                             @endforeach
+                            
                             </div>
                             
                             <div class="modal-action mt-4">
@@ -127,36 +128,7 @@
 
 
 
-            <script>
-                function removeNotification(appointmentId) {
-                    // Remove the notification from the DOM
-                    const notificationElement = document.getElementById('notification-' + appointmentId);
-                    if (notificationElement) {
-                        notificationElement.remove();
-                    }
-            
-                    // Optionally, make an AJAX request to delete the notification on the server
-                    fetch(`/appointments/${appointmentId}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}', // Include CSRF token
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json(); // You may want to return JSON if needed
-                    })
-                    .then(data => {
-                        console.log('Notification deleted successfully:', data);
-                    })
-                    .catch((error) => {
-                        console.error('There was a problem with the fetch operation:', error);
-                    });
-                }
-            </script>
+        
 
 
 
@@ -423,6 +395,32 @@
     function displayMessage(message) {
         toastr.success(message, 'Event');
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const dismissedNotifications = JSON.parse(localStorage.getItem('dismissedNotifications')) || [];
+    
+    dismissedNotifications.forEach(id => {
+        const notification = document.getElementById(`notification-${id}`);
+        if (notification) {
+            notification.remove(); // Remove dismissed notifications from the UI on load
+        }
+    });
+
+    // Event listener for dismissing notifications
+    document.querySelectorAll('.dismiss-notification').forEach(button => {
+        button.addEventListener('click', function() {
+            const notificationId = this.dataset.notificationId;
+            dismissedNotifications.push(notificationId);
+            localStorage.setItem('dismissedNotifications', JSON.stringify(dismissedNotifications));
+            const notification = document.getElementById(`notification-${notificationId}`);
+            if (notification) {
+                notification.remove(); // Remove the notification from the UI
+            }
+        });
+    });
+});
+
+
     </script>
     
 

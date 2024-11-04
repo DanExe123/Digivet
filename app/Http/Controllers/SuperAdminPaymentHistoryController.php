@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\User;
+use App\Models\Clinic;
 use App\Http\Requests\UpdatePaymentRequest;
 use App\Http\Requests\StorePaymentRequest; // Import the request
 
@@ -13,13 +14,18 @@ class SuperAdminPaymentHistoryController extends Controller
     {
         // Get clinics with their payment history
         $clinics = User::whereNotNull('clinicname')->get(['id', 'clinicname']);
-    
+        
         // Fetch the payment history
-        $payments = Payment::with('clinic')->get(); // Assuming a relation exists
-
+        $payments = Payment::with('clinic')->get();
+    
+        // Ensure to pass payments that have valid clinic relationships
+        $payments = $payments->filter(function ($payment) {
+            return $payment->clinic !== null;
+        });
+    
         return view('SuperAdmin.SuperAdminPaymentHistory', compact('clinics', 'payments'));
     }
-
+    
     public function store(StorePaymentRequest $request)
     {
         // Now you can use validated() method

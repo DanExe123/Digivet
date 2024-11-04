@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminWelcomeController extends Controller
 {
@@ -14,15 +13,16 @@ class AdminWelcomeController extends Controller
      */
     public function index()
     {
-        // Fetch users associated with the logged-in user's clinic
-        $users = User::where('clinicname', Auth::user()->clinicname)->get();
-
-        // Fetch appointments for the logged-in user
-        $appointments = Appointment::where('user_id', Auth::id())->get(); 
+        // Fetch all appointments
+        $appointments = Appointment::all(); 
         $cancelledAppointments = $appointments->where('status', 'cancelled');
         $appointmentCount = $appointments->count();
 
-        return view('admin.AdminWelcome', compact('users', 'appointments', 'cancelledAppointments', 'appointmentCount'));
+        // Fetch users associated with the logged-in user's clinic
+        // Uncomment this line if needed
+        // $users = User::where('clinicname', Auth::user()->clinicname)->get();
+
+        return view('admin.AdminWelcome', compact('appointments', 'cancelledAppointments', 'appointmentCount'));
     }
 
     /**
@@ -30,8 +30,8 @@ class AdminWelcomeController extends Controller
      */
     public function cancelAppointment()
     {
-        // Fetch appointments for the logged-in user
-        $appointments = Appointment::where('user_id', Auth::id())->get(); 
+        // Fetch all appointments
+        $appointments = Appointment::all(); 
         $cancelledAppointments = $appointments->where('status', 'cancelled'); 
 
         return view('admin.AdminWelcome', compact('appointments', 'cancelledAppointments'));

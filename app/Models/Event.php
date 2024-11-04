@@ -22,4 +22,9 @@ class Event extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function clinics()
+{
+    return $this->belongsTo(Clinic::class);
+}
 }

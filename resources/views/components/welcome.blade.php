@@ -2,7 +2,7 @@
 <!-- Include your Tailwind CSS here -->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script> 
   
-<div class=" lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700" data-aos="fade-down">
+<div class=" lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700" data-aos="fade-down"data-aos-duration="2000">
     <x-application-logo class="block h-12 w-auto" />
 
     <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
@@ -16,7 +16,7 @@
 
   <div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 p-6 lg:p-8">
 <!-- Column 1: Vaccinations -->
-<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300 " data-aos="zoom-out">
+<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300 " data-aos="zoom-out" data-aos-duration="2000">
   <div class="flex justify-center">
       <h1 class="mt-4 text-xl font-medium text-gray-900 dark:text-white">Vaccinations</h1>
   </div>
@@ -36,7 +36,7 @@
 </div>
 
 <!-- Column 2: Deworming -->
-<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300" data-aos="zoom-out">
+<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300" data-aos="zoom-out" data-aos-duration="2000">
   <div class="flex justify-center">
       <h1 class="mt-4 text-xl font-medium text-gray-900 dark:text-white">Deworming</h1>
   </div>
@@ -56,7 +56,7 @@
 </div>
 
 <!-- Column 3: Consultation -->
-<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300" data-aos="zoom-out">
+<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300" data-aos="zoom-out" data-aos-duration="2000">
   <div class="flex justify-center">
       <h1 class="mt-4 text-xl font-medium text-gray-900 dark:text-white">Pet Consultation</h1>
   </div>
@@ -76,7 +76,7 @@
 </div>
 
 <!-- Column 4: Pet Grooming -->
-<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300" data-aos="zoom-out">
+<div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded shadow border border-black transition-transform transform hover:scale-105 hover:shadow-lg duration-300" data-aos="zoom-out" data-aos-duration="2000">
   <div class="flex justify-center">
       <h1 class="mt-4 text-xl font-medium text-gray-900 dark:text-white">Pet Grooming</h1>
   </div>
@@ -99,7 +99,7 @@
   </div>
 
   <section class="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-duration="2000">
         <!-- Welcome Section -->
         <div class="mb-12 rounded-lg p-6 shadow-lg" style="background-color: #357D7F;">
             <h1 class="text-4xl font-bold text-white">Welcome to Our Pet Care Platform</h1>
@@ -111,15 +111,15 @@
     
         <!-- Card Section -->
         <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="rounded-lg border border-gray-300 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+            <div class="rounded-lg border border-gray-300 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-duration="2000">
                 <h2 class="text-lg font-bold">Quality Care</h2>
                 <p class="mt-2 text-gray-600">We ensure your pets receive top-notch care from our trusted professionals.</p>
             </div>
-            <div class="rounded-lg border border-gray-300 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+            <div class="rounded-lg border border-gray-300 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-duration="2000">
                 <h2 class="text-lg font-bold">Easy Appointments</h2>
                 <p class="mt-2 text-gray-600">Schedule and manage appointments effortlessly through our platform.</p>
             </div>
-            <div class="rounded-lg border border-gray-300 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+            <div class="rounded-lg border border-gray-300 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-duration="2000">
                 <h2 class="text-lg font-bold">Client Communication</h2>
                 <p class="mt-2 text-gray-600">Stay connected with your clients through our integrated communication tools.</p>
             </div>
@@ -127,7 +127,7 @@
     </div>
 </section>
 
-<section class="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24" data-aos="zoom-in">
+<section class="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24" data-aos="zoom-in" data-aos-duration="2000">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Features Section -->
         <div class="mt-5 rounded-lg bg-white p-6 shadow-lg">
@@ -138,7 +138,7 @@
             </p>
             
             <ul class="mx-auto mt-12 grid max-w-md grid-cols-1 gap-10 sm:mt-16 lg:mt-20 lg:max-w-5xl lg:grid-cols-4">
-                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-delay="100">
+                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-duration="2000">
                     <span class="absolute left-[18px] top-14 h-[calc(100%_-_32px)] w-px bg-gray-300 lg:right-0 lg:left-auto lg:top-[18px] lg:h-px lg:w-[calc(100%_-_72px)]" aria-hidden="true"></span>
                     <div class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-gray-50 transition-all duration-200 group-hover:border-[#357D7F] group-hover:bg-[#357D7F]">
                         <i class="fas fa-comments text-gray-600 group-hover:text-white"></i>
@@ -148,7 +148,7 @@
                         <h4 class="mt-2 text-base text-gray-700">Engage effectively with clients through our platform.</h4>
                     </div>
                 </li>
-                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-delay="200">
+                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-duration="2000">
                     <span class="absolute left-[18px] top-14 h-[calc(100%_-_32px)] w-px bg-gray-300 lg:right-0 lg:left-auto lg:top-[18px] lg:h-px lg:w-[calc(100%_-_72px)]" aria-hidden="true"></span>
                     <div class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-gray-50 transition-all duration-200 group-hover:border-[#357D7F] group-hover:bg-[#357D7F]">
                         <i class="fas fa-calendar-check text-gray-600 group-hover:text-white"></i>
@@ -158,7 +158,7 @@
                         <h4 class="mt-2 text-base text-gray-700">Schedule your appointments seamlessly.</h4>
                     </div>
                 </li>
-                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-delay="300">
+                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-duration="2000">
                     <span class="absolute left-[18px] top-14 h-[calc(100%_-_32px)] w-px bg-gray-300 lg:right-0 lg:left-auto lg:top-[18px] lg:h-px lg:w-[calc(100%_-_72px)]" aria-hidden="true"></span>
                     <div class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-gray-50 transition-all duration-200 group-hover:border-[#357D7F] group-hover:bg-[#357D7F]">
                         <i class="fas fa-paw text-gray-600 group-hover:text-white"></i>
@@ -168,7 +168,7 @@
                         <h4 class="mt-2 text-base text-gray-700">Manage your pet's information and records.</h4>
                     </div>
                 </li>
-                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-delay="400">
+                <li class="flex-start group relative flex lg:flex-col" data-aos="zoom-in" data-aos-duration="2000">
                     <div class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-gray-50 transition-all duration-200 group-hover:border-[#357D7F] group-hover:bg-[#357D7F]">
                         <i class="fas fa-money-bill-wave text-gray-600 group-hover:text-white"></i>
                     </div>
@@ -184,7 +184,7 @@
 
 
 
-<section class="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24" data-aos="fade-up">
+<section class="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24" data-aos="fade-up" data-aos-duration="2000">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Tips for Dogs Section -->
         <div class="rounded-lg bg-white p-8 shadow-lg mb-12 border-t-4 border-[#357D7F]">
@@ -195,7 +195,7 @@
             </p>
             
             <ul class="mt-8 space-y-6">
-                <li class="flex items-start transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                <li class="flex items-start transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-duration="2000">
                     <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#357D7F] text-white">
                         <i class="fas fa-bone"></i>
                     </div>
@@ -204,7 +204,7 @@
                         <p class="mt-1 text-gray-600">Feed your dog a nutritious, balanced diet to maintain optimal health and energy levels.</p>
                     </div>
                 </li>
-                <li class="flex items-start transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                <li class="flex items-start transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-duration="2000">
                     <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#357D7F] text-white">
                         <i class="fas fa-paw"></i>
                     </div>
@@ -213,7 +213,7 @@
                         <p class="mt-1 text-gray-600">Daily walks and playtime are essential for physical and mental well-being.</p>
                     </div>
                 </li>
-                <li class="flex items-start transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                <li class="flex items-start transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-duration="2000" >
                     <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#357D7F] text-white">
                         <i class="fas fa-stethoscope"></i>
                     </div>
@@ -227,7 +227,7 @@
         </div>
 
           <!-- Pet Story Section -->
-          <div class="rounded-lg bg-white p-8 shadow-lg border-t-4 border-[#357D7F]" data-aos="fade-left">
+          <div class="rounded-lg bg-white p-8 shadow-lg border-t-4 border-[#357D7F]" data-aos="fade-left " data-aos-duration="2000">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">A Heartwarming Pet Story</h2>
             <p class="mt-4 text-lg text-gray-700">Meet Bella, a playful golden retriever who found her forever home and now lives happily with her loving family.</p>
             
@@ -245,7 +245,7 @@
 </section>
 
 </div>
-<footer class="footer bg-white text-base-content p-10 mt-2 relative overflow-hidden" data-aos="zoom-in-up" data-aos-duration="1500">
+<footer class="footer bg-white text-base-content p-10 mt-2 relative overflow-hidden" data-aos="zoom-in-up" data-aos-duration="2000">
     <div class="absolute inset-0 z-0 h-full w-full">
         <div class="absolute inset-0 z-0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#357D7F" fill-opacity="1" d="M0,64L120,80C240,96,480,128,720,128C960,128,1200,96,1320,80L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>

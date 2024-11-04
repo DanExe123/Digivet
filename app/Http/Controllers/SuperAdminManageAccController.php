@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Clinic;
 use App\Models\SuperadminManageAccount;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -20,21 +21,34 @@ class SuperAdminManageAccController extends Controller
     }
 
 
-// Function to update the status of a vet clinic
-public function updateStatus(Request $request, $id)
-{
-    $vetClinic = SuperadminManageAccount::find($id);
-
-    if (!$vetClinic) {
-        return redirect()->back()->with('error', 'Vet clinic not found.');
+    public function updateStatus(Request $request, $id)
+    {
+        // Find the vet clinic account by ID
+        $vetClinic = SuperadminManageAccount::find($id);
+    
+        if (!$vetClinic) {
+            return redirect()->back()->with('error', 'Vet clinic not found.');
+        }
+    
+        // Update the status based on the request
+        $vetClinic->status = $request->status;
+        
+        // Update the corresponding clinic's status
+        $clinic = Clinic::where('user_id', $vetClinic->user_id)->first(); // Assuming user_id links to the clinic
+    
+        if ($clinic) {
+            $clinic->status = $request->status; // Update the clinic's status
+            $clinic->save(); // Save changes to the clinics table
+        } else {
+            return redirect()->back()->with('error', 'Related clinic not found.');
+        }
+    
+        // Save the changes to the SuperadminManageAccount
+        $vetClinic->save();
+    
+        return redirect()->back()->with('success', 'Vet clinic status updated successfully to ' . $request->status . '.');
     }
-
-    // Update the status based on the request
-    $vetClinic->status = $request->status;
-    $vetClinic->save();
-
-    return redirect()->back()->with('success', 'Vet clinic status updated successfully to ' . $request->status . '.');
-}
+    
 
 
    // Function to delete a vet clinic
@@ -94,13 +108,20 @@ public function sendEmailAlert($id)
         $mail->Port       = 587;                              // TCP port to connect to
 
         // Recipients
-        $mail->setFrom('dnexus204@gmail.com', 'Admin');       // Your Gmail email and name
+        $mail->setFrom('dnexus204@gmail.com', 'SuperAdmin_DigiVet');       // Your Gmail email and name
         $mail->addAddress($email, $vetClinic->name);             // Add recipient (clinic's email)
 
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Important Alert for Your Clinic';
-        $mail->Body    = '<h1>Hello, ' . $vetClinic->name . '</h1><p>Huy na confirm ko na imo account .</p>';
+        $mail->Body = '<h1>Hello, ' . $vetClinic->name . '</h1>' .
+        '<img src="' . asset('logo/Veterinary Clinic System_20240517_125656_0000.png') . '" alt="Logo" style="max-width:200px;"/>' .
+        '<p>Thank you for your continued partnership with us!</p>' .
+        '<p>This is a confirmation alert regarding your recent request.</p>' .
+        '<p>If you have any questions or need further assistance, please do not hesitate to reach out.</p>' .
+        '<p>Best regards,<br>Digital Nexus</p>';
+
+
         $mail->AltBody = 'Hello, ' . $vetClinic->name . '. We have an important update for you.';
 
         // Send the email

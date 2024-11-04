@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('superadmin_manage_accounts', function (Blueprint $table) {
-            $table->json('clinic_documents')->nullable(); // You can change the type and constraints as per your requirements
+            $table->text('clinic_documents')->nullable(); // You can change the type and constraints as per your requirements
         });
     }
     
