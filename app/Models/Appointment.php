@@ -19,7 +19,7 @@ class Appointment extends Model
 
     protected $fillable = [
         'user_id',
-        'clinic_owner_id',
+        'clinic_id',
         'pet_name',
         'clinicname', 
         'services',

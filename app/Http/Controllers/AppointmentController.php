@@ -56,8 +56,8 @@ class AppointmentController extends Controller
         
         $validated = $request->validated();
         
-        
-        $filteredServices = array_filter($validated['services']); // Filter out any empty services
+   // [$clinicOwnerId, $clinicName] = explode('|', $validated['clinic_id']);
+    $filteredServices = array_filter($validated['services']); // Filter out any empty services
 
           // Get the last appointment number
     $lastAppointment = Appointment::orderBy('appointment_number', 'desc')->first();
@@ -67,7 +67,8 @@ class AppointmentController extends Controller
     Appointment::create([
 
         'user_id' => auth()->id(), 
-        'clinic_owner_id' => $clinics->id,
+        'clinic_id' => $validated['clinic_id'],
+        // 'clinic_owner_id' => $validated['clinic_id'],
         'pet_name' => $validated['pet_name'],
         'clinicname' => $validated['clinicname'],
         'services' => !empty($filteredServices) ? implode(',', $filteredServices) : null, // Store services as a comma-separated string

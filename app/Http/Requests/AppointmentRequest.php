@@ -26,7 +26,7 @@ class AppointmentRequest extends FormRequest
         return [
             'pet_name' => 'required|string|max:255',
             'clinicname' => 'required|string',
-            
+            'clinic_id' => 'required|exists:users,id',
             'services' => 'required|array|min:1',
             'gender' => 'required|string',
             'breed' => 'required|string',
